@@ -1,19 +1,24 @@
+//Import core dependencies
 const express = require("express");
 const mongoose = require("mongoose");
 
-//Import the shcemas
+//Import Mongoose models (schemas)
 const Product = require('./models/Product');
 const User = require('./models/User');
 const Order = require('./models/Order');
 const Review = require('./models/Review');
 
+//Import additional route handlers (queries.js)
 const queryRoutes = require("./queries");
 
+//Initialize Express app
 const app = express();
-app.use(express.json());
+app.use(express.json()); // Middleware to parse JSON request bodies
+
+//Mount external query routes at root path
 app.use("/", queryRoutes);
 
-//Connect to MongoDB
+//Connect to MongoDB Replica Set
 mongoose.connect("mongodb://localhost:27117,localhost:27118,localhost:27119/ecommerce?replicaSet=rs0", {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -22,16 +27,18 @@ mongoose.connect("mongodb://localhost:27117,localhost:27118,localhost:27119/ecom
 
 //Routes
 
+//Base route to verify server is running
 app.get("/", (req, res) => {
     res.send("E-commerce API is running");
 });
 
+//Insert sample product
 app.get("/add-product", async (req, res) => {
   const sample_Product = new Product({
     product_id: "P2002",
     product_name: "Bluetooth Keyboard",
     product_price: 499.99,
-    product_ategory: "electronics",
+    product_category: "electronics",
     product_stock: 30,
     seller_id: "U2020",
     product_images: ["keyboard1.jpg"]
@@ -45,6 +52,7 @@ app.get("/add-product", async (req, res) => {
 
 });
 
+//Insert sample user
 app.get("/add-user", async (req, res) => {
   const sample_User = new User({
     user_id: "U9001",
@@ -65,6 +73,7 @@ app.get("/add-user", async (req, res) => {
 
 });
 
+//Insert sample order for user
 app.get("/add-order", async (req, res) => {
   const sample_Order = new Order({
     order_id: "O8001",
@@ -88,6 +97,7 @@ app.get("/add-order", async (req, res) => {
 
 });
 
+//Insert sample review for a product
 app.get('/add-review', async (req, res) => {
   const sample_Review = new Review({
     review_id: "R5001",
@@ -104,5 +114,7 @@ app.get('/add-review', async (req, res) => {
   }
 
 });
+
+//Start server on defined port
 const PORT = 3000;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
