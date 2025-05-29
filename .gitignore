@@ -1,12 +1,12 @@
 node_modules/
 
-# Ignore everything in replica folders,
-mongo-replica/rs1/*
-mongo-replica/rs2/*
-mongo-replica/rs3/*
+#Ignore everything in replica folders
+ecommerce-backend/mongo-replica/rs1/*
+ecommerce-backend/mongo-replica/rs2/*
+ecommerce-backend/mongo-replica/rs3/*
 
-# Except .gitkeep to preserve empty folder structure (optional),
-!mongo-replica/rs1/.gitkeep
-!mongo-replica/rs2/.gitkeep
-!mongo-replica/rs3/.gitkeep
+#Except .gitkeep to preserve the empty folder structure
+!ecommerce-backend/mongo-replica/rs1/.gitkeep
+!ecommerce-backend/mongo-replica/rs2/.gitkeep
+!ecommerce-backend/mongo-replica/rs3/.gitkeep
 

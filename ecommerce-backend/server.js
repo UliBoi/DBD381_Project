@@ -7,8 +7,11 @@ const User = require('./models/User');
 const Order = require('./models/Order');
 const Review = require('./models/Review');
 
+const queryRoutes = require("./queries");
+
 const app = express();
 app.use(express.json());
+app.use("/", queryRoutes);
 
 //Connect to MongoDB
 mongoose.connect("mongodb://localhost:27117,localhost:27118,localhost:27119/ecommerce?replicaSet=rs0", {
