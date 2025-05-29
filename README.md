@@ -1,3 +1,7 @@
+# Github Link
+
+https://github.com/UliBoi/DBD381_Project
+
 # DBD381 Distributed NoSQL E-Commerce Backend
 
 This project implements a **distributed NoSQL MongoDB replica set** for an e-commerce marketplace, developed as part of the DBD371/381 assessment. It features schema design, Express.js routing, testing, performance metrics, and high-availability via MongoDB replication.
